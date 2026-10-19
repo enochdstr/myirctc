@@ -308,8 +308,8 @@
             <hr class="irctc-divider">
 
             <div class="irctc-footer">
-                IRCTC-inspired demonstration interface.<br>
-                This is not the official IRCTC login page.Temp
+                Thanks for visiting the Churchspot page.<br>
+                This is not the official Churchspot login page.
             </div>
 
         </div>
