@@ -244,6 +244,18 @@
                         autocomplete="age"
                         required>
                 </div>
+		
+		<div class="irctc-form-group">
+                    <label for="DOB">DOB</label>
+                    <input
+                        type="number"
+                        id="date of birth"
+			name="D.O.B"
+                        placeholder="Enter your Date of Birth"
+                        minlength="8"
+                        autocomplete="D.O.B"
+                        required>
+                </div>
 
                 <div class="irctc-form-group">
                     <label for="password">Password</label>
