@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f2f4f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+  .irctc-card { background: #fff; padding: 32px; width: 100%; max-width: 360px; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+  .irctc-card h2 { margin-top: 0; text-align: center; }
+  .irctc-form-group { margin-bottom: 16px; }
+  .irctc-form-group label { display: block; margin-bottom: 6px; font-weight: bold; }
+  .irctc-form-group input { width: 100%; padding: 10px; border: 1px solid #bbb; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
+  button { width: 100%; padding: 12px; background: #fb792b; color: #fff; border: 0; border-radius: 6px; font-size: 16px; cursor: pointer; }
+  button:hover { background: #e36a20; }
+  #error { color: #c62828; text-align: center; margin-top: 12px; min-height: 20px; }
+</style>
+</head>
+<body>
+
+<form class="irctc-card" id="loginForm">
+  <h2>Login</h2>
+
+  <div class="irctc-form-group">
+    <label for="username">User ID</label>
+    <input type="text" id="username" name="username"
+           placeholder="Enter your User ID"
+           minlength="4" autocomplete="username" required>
+  </div>
+
+  <div class="irctc-form-group">
+    <label for="age">Age</label>
+    <!-- type="age" is not valid HTML; use type="number" -->
+    <input type="number" id="age" name="age"
+           placeholder="Enter your age"
+           min="10" max="120" required>
+  </div>
+
+  <div class="irctc-form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"
+           placeholder="Enter your password"
+           minlength="5" autocomplete="current-password" required>
+  </div>
+
+  <button type="submit">Sign In</button>
+  <div id="error"></div>
+</form>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var user = document.getElementById("username").value.trim();
+    var pass = document.getElementById("password").value;
+
+    if (user === "admin" && pass === "admin") {
+      sessionStorage.setItem("loggedIn", "true");
+      window.location.href = "verses.html";   // opens the Bible verses page
+    } else {
+      document.getElementById("error").textContent = "Invalid User ID or Password.";
+    }
+  });
+</script>
+
+</body>
+</html>
+

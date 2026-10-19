@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Words of Hope</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    font-family: 'Lora', Georgia, serif;
+    color: #fff;
+    background: linear-gradient(135deg, #2b1055, #7597de 50%, #f9a8d4);
+    background-attachment: fixed;
+  }
+  header { text-align: center; padding: 48px 16px 16px; }
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 6vw, 3.6rem); margin: 0;
+    text-shadow: 0 3px 12px rgba(0,0,0,.35);
+  }
+  header p { font-style: italic; font-size: 1.15rem; margin-top: 8px; }
+
+  .grid {
+    display: grid; gap: 20px; padding: 24px;
+    max-width: 1100px; margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .verse {
+    padding: 28px 24px; border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    border: 2px solid rgba(255,255,255,.45);
+  }
+  .verse q { display: block; font-size: 1.15rem; line-height: 1.6; quotes: none; font-style: italic; }
+  .verse cite {
+    display: block; margin-top: 16px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: normal; font-weight: 600; text-align: right;
+  }
+  .c1 { background: linear-gradient(145deg, #e53935, #ff8a65); }
+  .c2 { background: linear-gradient(145deg, #1e88e5, #26c6da); }
+  .c3 { background: linear-gradient(145deg, #43a047, #c0ca33); }
+  .c4 { background: linear-gradient(145deg, #8e24aa, #ec407a); }
+  .c5 { background: linear-gradient(145deg, #fb8c00, #fdd835); color: #3b2300; }
+  .c6 { background: linear-gradient(145deg, #3949ab, #5c6bc0); }
+
+  .thanks { text-align: center; padding: 40px 16px 56px; }
+  .thanks h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 8px;
+  }
+  .thanks p { font-size: 1.1rem; }
+  .logout {
+    display: inline-block; margin-top: 16px; padding: 10px 28px;
+    background: #fff; color: #2b1055; border-radius: 999px;
+    text-decoration: none; font-weight: bold;
+  }
+  .logout:hover { background: #ffe082; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Words of Hope &amp; Faith</h1>
+  <p>Welcome, admin. Take a moment to read these verses.</p>
+</header>
+
+<main class="grid">
+  <section class="verse c1">
+    <q>For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</q>
+    <cite>John 3:16</cite>
+  </section>
+
+  <section class="verse c2">
+    <q>The LORD is my shepherd; I shall not want.</q>
+    <cite>Psalm 23:1</cite>
+  </section>
+
+  <section class="verse c3">
+    <q>I can do all things through Christ which strengtheneth me.</q>
+    <cite>Philippians 4:13</cite>
+  </section>
+
+  <section class="verse c4">
+    <q>Trust in the LORD with all thine heart; and lean not unto thine own understanding.</q>
+    <cite>Proverbs 3:5</cite>
+  </section>
+
+  <section class="verse c5">
+    <q>Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.</q>
+    <cite>Joshua 1:9</cite>
+  </section>
+
+  <section class="verse c6">
+    <q>And we know that all things work together for good to them that love God, to them who are the called according to his purpose.</q>
+    <cite>Romans 8:28</cite>
+  </section>
+</main>
+
+<footer class="thanks">
+  <h2>Thank You!</h2>
+  <p>God bless you. Have a wonderful day.</p>
+  <a class="logout" href="login.html" id="logout">Logout</a>
+</footer>
+
+<script>
+  // Block direct access without logging in
+  if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+  document.getElementById("logout").addEventListener("click", function () {
+    sessionStorage.removeItem("loggedIn");
+  });
+</script>
+
+</body>
+</html>
+
