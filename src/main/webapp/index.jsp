@@ -219,7 +219,7 @@
                 Sign in to your account
             </p>
 
-            <form method="POST" action="LoginServlet">
+            <form method="POST" action="login.html">
 
                 <div class="irctc-form-group">
                     <label for="username">User ID</label>
@@ -248,9 +248,9 @@
 		<div class="irctc-form-group">
                     <label for="DOB">DOB</label>
                     <input
-                        type="number"
-                        id="date of birth"
-			name="D.O.B"
+                        type="DOB"
+                        id="DOB"
+			name="DOB"
                         placeholder="Enter your Date of Birth"
                         minlength="8"
                         autocomplete="D.O.B"
