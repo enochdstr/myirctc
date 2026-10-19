@@ -252,7 +252,7 @@
                         id="password"
                         name="password"
                         placeholder="Enter your password"
-                        minlength="6"
+                        minlength="4"
                         autocomplete="current-password"
                         required>
                 </div>
