@@ -207,16 +207,16 @@
 
         <div class="irctc-header">
             <div class="irctc-logo">
-                IRCTC<span>.</span>
+                CHURCH-SPOT<span> </span
             </div>
-            <p>INDIAN RAILWAYS — ONLINE SERVICES</p>
+            <p> ONLINE SERVICES</p>
         </div>
 
         <div class="irctc-form-container">
 
             <h2>Welcome Back!</h2>
             <p class="irctc-subtitle">
-                Sign in to your railway account
+                Sign in to your account
             </p>
 
             <form method="POST" action="LoginServlet">
@@ -230,6 +230,18 @@
                         placeholder="Enter your User ID"
                         minlength="4"
                         autocomplete="username"
+                        required>
+                </div>
+
+		<div class="irctc-form-group">
+                    <label for="AGE">AGE</label>
+                    <input
+                        type="age"
+                        id="age"
+                        name="age"
+                        placeholder="Enter your AGE"
+                        minlength="2"
+                        autocomplete="age"
                         required>
                 </div>
 
