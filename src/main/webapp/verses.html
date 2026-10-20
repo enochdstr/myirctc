@@ -1,117 +1,1310 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Words of Hope</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#ffffff">
+
+<title>Church Spot | Daily Bible & Inspiration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh;
-    font-family: 'Lora', Georgia, serif;
-    color: #fff;
-    background: linear-gradient(135deg, #2b1055, #7597de 50%, #f9a8d4);
-    background-attachment: fixed;
-  }
-  header { text-align: center; padding: 48px 16px 16px; }
-  header h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 6vw, 3.6rem); margin: 0;
-    text-shadow: 0 3px 12px rgba(0,0,0,.35);
-  }
-  header p { font-style: italic; font-size: 1.15rem; margin-top: 8px; }
+:root {
+    --navy: #203653;
+    --gold: #c49a4a;
+    --gold-light: #f8f0df;
+    --text: #334155;
+    --muted: #788397;
+    --border: #e9edf2;
+    --white: #ffffff;
+    --soft-bg: #fbfcfe;
+}
 
-  .grid {
-    display: grid; gap: 20px; padding: 24px;
-    max-width: 1100px; margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-  .verse {
-    padding: 28px 24px; border-radius: 18px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    border: 2px solid rgba(255,255,255,.45);
-  }
-  .verse q { display: block; font-size: 1.15rem; line-height: 1.6; quotes: none; font-style: italic; }
-  .verse cite {
-    display: block; margin-top: 16px;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: normal; font-weight: 600; text-align: right;
-  }
-  .c1 { background: linear-gradient(145deg, #e53935, #ff8a65); }
-  .c2 { background: linear-gradient(145deg, #1e88e5, #26c6da); }
-  .c3 { background: linear-gradient(145deg, #43a047, #c0ca33); }
-  .c4 { background: linear-gradient(145deg, #8e24aa, #ec407a); }
-  .c5 { background: linear-gradient(145deg, #fb8c00, #fdd835); color: #3b2300; }
-  .c6 { background: linear-gradient(145deg, #3949ab, #5c6bc0); }
+* {
+    box-sizing: border-box;
+}
 
-  .thanks { text-align: center; padding: 40px 16px 56px; }
-  .thanks h2 {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--soft-bg);
+    color: var(--text);
+    font-family: 'DM Sans', Arial, sans-serif;
+    line-height: 1.6;
+}
+
+button, input {
+    font: inherit;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+}
+
+/* Navigation */
+
+.navbar {
+    min-height: 76px;
+    padding: 15px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    background: var(--gold-light);
+    color: var(--gold);
+    border-radius: 13px;
+    font-size: 24px;
+}
+
+.brand-name {
+    font-weight: 800;
+    color: var(--navy);
+    font-size: 21px;
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: var(--gold);
+}
+
+.brand-caption {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-greeting {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.user-greeting strong {
+    color: var(--navy);
+}
+
+.logout {
+    display: inline-block;
+    padding: 9px 17px;
+    border: 1px solid #e4e8ef;
+    border-radius: 9px;
+    text-decoration: none;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.logout:hover {
+    border-color: var(--gold);
+    background: var(--gold-light);
+}
+
+/* Moving verse ticker */
+
+.ticker {
+    background: #f8f2e7;
+    border-bottom: 1px solid #eee2cd;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: 47px;
+}
+
+.ticker-label {
+    background: #ead8b4;
+    color: #5e4825;
+    padding: 13px 18px;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.ticker-window {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: moveVerse 32s linear infinite;
+}
+
+.ticker-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 50px;
+    padding-left: 35px;
+    white-space: nowrap;
+    color: #665535;
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 8px;
-  }
-  .thanks p { font-size: 1.1rem; }
-  .logout {
-    display: inline-block; margin-top: 16px; padding: 10px 28px;
-    background: #fff; color: #2b1055; border-radius: 999px;
-    text-decoration: none; font-weight: bold;
-  }
-  .logout:hover { background: #ffe082; }
+    font-size: 14px;
+    font-style: italic;
+}
+
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
+    animation-play-state: paused;
+}
+
+@keyframes moveVerse {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Main hero */
+
+main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 44px 25px 65px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.welcome h1 {
+    margin: 10px 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 5vw, 49px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: var(--navy);
+}
+
+.welcome p {
+    max-width: 610px;
+    margin: 12px auto 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+/* Verse of the day */
+
+.daily-card {
+    position: relative;
+    overflow: hidden;
+    padding: 44px 35px;
+    margin-bottom: 48px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top right, #fff5df 0%, transparent 45%),
+        linear-gradient(135deg, #ffffff, #faf7f0);
+    border: 1px solid #eee4d2;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(39, 55, 78, 0.06);
+}
+
+.daily-card::before {
+    content: "✝";
+    position: absolute;
+    right: 30px;
+    top: -45px;
+    color: rgba(196, 154, 74, 0.09);
+    font-size: 190px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.daily-content {
+    position: relative;
+    z-index: 1;
+    max-width: 790px;
+    margin: 0 auto;
+}
+
+.daily-label {
+    display: inline-block;
+    padding: 7px 14px;
+    background: var(--gold-light);
+    color: #8c6a2e;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.quote-mark {
+    display: block;
+    color: var(--gold);
+    font-family: Georgia, serif;
+    font-size: 65px;
+    line-height: 1;
+    margin-top: 20px;
+    height: 45px;
+}
+
+.daily-verse {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(22px, 3.4vw, 34px);
+    line-height: 1.55;
+    color: var(--navy);
+    margin: 16px 0;
+}
+
+.daily-reference {
+    color: #9a7637;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.daily-date {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.daily-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.action-button {
+    padding: 10px 17px;
+    border: 1px solid #e3d5b9;
+    border-radius: 9px;
+    background: white;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.action-button:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+}
+
+.action-button.primary {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+}
+
+.action-button.primary:hover {
+    background: #304c70;
+}
+
+/* Section headings */
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--navy);
+    font-size: 28px;
+}
+
+.section-heading p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Search */
+
+.search-wrap {
+    margin-bottom: 25px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 18px;
+    border: 1px solid #e0e6ed;
+    border-radius: 12px;
+    outline: none;
+    background: white;
+    color: var(--text);
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.search-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(196, 154, 74, 0.12);
+}
+
+/* Verse cards */
+
+.verse-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 19px;
+}
+
+.verse-card {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    min-height: 245px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(36, 52, 73, 0.035);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.verse-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 13px 28px rgba(36, 52, 73, 0.08);
+    border-color: #e5d2a9;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.category {
+    color: #97743a;
+    background: #faf4e8;
+    border-radius: 30px;
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.favorite {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #edf0f4;
+    border-radius: 50%;
+    background: white;
+    color: #8b95a5;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.favorite.active {
+    color: #c64d63;
+    background: #fff0f2;
+    border-color: #f6d7dd;
+}
+
+.verse-text {
+    flex: 1;
+    color: #3c4b61;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.verse-reference {
+    display: block;
+    margin-top: 19px;
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 13px;
+    border-top: 1px solid #f0f2f5;
+}
+
+.copy-button {
+    border: 0;
+    background: transparent;
+    color: #6b778a;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.copy-button:hover {
+    color: #9a7637;
+}
+
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 35px 15px;
+    color: var(--muted);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/* Encouragement panel */
+
+.encouragement {
+    margin-top: 50px;
+    padding: 32px 25px;
+    border-radius: 18px;
+    text-align: center;
+    background: #f0f4f9;
+    border: 1px solid #e4eaf2;
+}
+
+.encouragement h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--navy);
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+.encouragement p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #69788c;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Footer */
+
+footer {
+    padding: 30px 20px;
+    text-align: center;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.footer-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--navy);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.footer-brand span {
+    color: var(--gold);
+}
+
+footer p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 7px 0;
+}
+
+.back-top {
+    display: inline-block;
+    margin-top: 10px;
+    color: #927036;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid #d5ae62;
+    outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .verse-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    main {
+        padding-top: 35px;
+    }
+}
+
+@media (max-width: 580px) {
+    .navbar {
+        padding: 13px 5%;
+        flex-wrap: wrap;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .brand-caption {
+        font-size: 9px;
+    }
+
+    .brand-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .ticker-label {
+        padding: 12px 9px;
+        font-size: 9px;
+    }
+
+    .ticker-group {
+        font-size: 12px;
+        gap: 30px;
+    }
+
+    main {
+        padding: 32px 16px 45px;
+    }
+
+    .welcome {
+        margin-bottom: 28px;
+    }
+
+    .welcome p {
+        font-size: 14px;
+    }
+
+    .daily-card {
+        padding: 35px 19px;
+        border-radius: 18px;
+        margin-bottom: 38px;
+    }
+
+    .daily-card::before {
+        right: -10px;
+        font-size: 130px;
+    }
+
+    .daily-verse {
+        font-size: 23px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .section-heading h2 {
+        font-size: 25px;
+    }
+
+    .verse-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .verse-card {
+        min-height: 210px;
+    }
+
+    .encouragement {
+        padding: 28px 18px;
+        margin-top: 35px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Words of Hope &amp; Faith</h1>
-  <p>Welcome, admin. Take a moment to read these verses.</p>
-</header>
+<!-- Navigation -->
+<nav class="navbar" aria-label="Main navigation">
+    <div class="brand">
+        <div class="brand-icon" aria-hidden="true">✝</div>
+        <div>
+            <div class="brand-name">CHURCH <span>SPOT</span></div>
+            <span class="brand-caption">A PLACE OF FAITH & HOPE</span>
+        </div>
+    </div>
 
-<main class="grid">
-  <section class="verse c1">
-    <q>For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</q>
-    <cite>John 3:16</cite>
-  </section>
+    <div class="nav-right">
+        <div class="user-greeting">
+            Welcome, <strong id="usernameDisplay">Friend</strong> ♡
+        </div>
+        <a href="login.html" class="logout" id="logout">Logout ↗</a>
+    </div>
+</nav>
 
-  <section class="verse c2">
-    <q>The LORD is my shepherd; I shall not want.</q>
-    <cite>Psalm 23:1</cite>
-  </section>
+<!-- Moving Bible verse banner -->
+<div class="ticker" aria-label="Moving Bible verse banner">
+    <div class="ticker-label">WORDS OF FAITH</div>
 
-  <section class="verse c3">
-    <q>I can do all things through Christ which strengtheneth me.</q>
-    <cite>Philippians 4:13</cite>
-  </section>
+    <div class="ticker-window">
+        <div class="ticker-track">
+            <div class="ticker-group" aria-hidden="true">
+                <span>✦ Be still, and know that I am God. — Psalm 46:10</span>
+                <span>✦ The Lord is my shepherd. — Psalm 23:1</span>
+                <span>✦ Walk by faith, not by sight. — 2 Corinthians 5:7</span>
+                <span>✦ Love never fails. — 1 Corinthians 13:8</span>
+            </div>
+            <div class="ticker-group" aria-hidden="true">
+                <span>✦ Be still, and know that I am God. — Psalm 46:10</span>
+                <span>✦ The Lord is my shepherd. — Psalm 23:1</span>
+                <span>✦ Walk by faith, not by sight. — 2 Corinthians 5:7</span>
+                <span>✦ Love never fails. — 1 Corinthians 13:8</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <section class="verse c4">
-    <q>Trust in the LORD with all thine heart; and lean not unto thine own understanding.</q>
-    <cite>Proverbs 3:5</cite>
-  </section>
+<main id="top">
 
-  <section class="verse c5">
-    <q>Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.</q>
-    <cite>Joshua 1:9</cite>
-  </section>
+    <!-- Welcome heading -->
+    <section class="welcome">
+        <div class="eyebrow">A MOMENT WITH GOD</div>
+        <h1>Let His Word Light Your Day</h1>
+        <p>
+            Slow down, find peace in His promises, and let the
+            Word of God fill your heart with hope, courage, and love.
+        </p>
+    </section>
 
-  <section class="verse c6">
-    <q>And we know that all things work together for good to them that love God, to them who are the called according to his purpose.</q>
-    <cite>Romans 8:28</cite>
-  </section>
+    <!-- Verse of the day -->
+    <section class="daily-card" aria-labelledby="dailyTitle">
+        <div class="daily-content">
+            <div class="daily-label" id="dailyTitle">
+                ✨ VERSE OF THE DAY
+            </div>
+
+            <span class="quote-mark" aria-hidden="true">“</span>
+
+            <blockquote class="daily-verse" id="dailyVerse">
+                This is the day which the LORD hath made;
+                we will rejoice and be glad in it.
+            </blockquote>
+
+            <div class="daily-reference" id="dailyReference">
+                Psalm 118:24
+            </div>
+
+            <div class="daily-date" id="dailyDate"></div>
+
+            <div class="daily-actions">
+                <button class="action-button primary" id="copyDaily" type="button">
+                    ▢ Copy Today's Verse
+                </button>
+                <button class="action-button" id="shareDaily" type="button">
+                    ↗ Share Verse
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verse collection -->
+    <section aria-labelledby="collectionTitle">
+        <div class="section-heading">
+            <div>
+                <h2 id="collectionTitle">Treasures from the Bible</h2>
+                <p>Find a promise for every season of your life.</p>
+            </div>
+            <div id="verseCount" aria-live="polite"
+                 style="color:#788397;font-size:13px">
+                12 verses
+            </div>
+        </div>
+
+        <div class="search-wrap">
+            <input
+                type="search"
+                class="search-input"
+                id="verseSearch"
+                placeholder="Search verses, references, or topics..."
+                aria-label="Search Bible verses">
+        </div>
+
+        <div class="verse-grid" id="verseGrid">
+
+            <article class="verse-card"
+                data-category="love"
+                data-reference="John 3:16">
+                <div class="card-top">
+                    <span class="category">God's Love</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add John 3:16 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    For God so loved the world, that he gave his
+                    only begotten Son, that whosoever believeth in
+                    him should not perish, but have everlasting life.
+                </div>
+                <cite class="verse-reference">John 3:16</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">LOVE</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="peace comfort"
+                data-reference="Psalm 23:1">
+                <div class="card-top">
+                    <span class="category">Peace</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Psalm 23:1 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    The LORD is my shepherd; I shall not want.
+                </div>
+                <cite class="verse-reference">Psalm 23:1</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">COMFORT</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="strength faith"
+                data-reference="Philippians 4:13">
+                <div class="card-top">
+                    <span class="category">Strength</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Philippians 4:13 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    I can do all things through Christ which
+                    strengtheneth me.
+                </div>
+                <cite class="verse-reference">Philippians 4:13</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">COURAGE</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="trust wisdom"
+                data-reference="Proverbs 3:5">
+                <div class="card-top">
+                    <span class="category">Trust</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Proverbs 3:5 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    Trust in the LORD with all thine heart; and
+                    lean not unto thine own understanding.
+                </div>
+                <cite class="verse-reference">Proverbs 3:5</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">GUIDANCE</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="courage strength"
+                data-reference="Joshua 1:9">
+                <div class="card-top">
+                    <span class="category">Courage</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Joshua 1:9 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    Be strong and of a good courage; be not afraid,
+                    neither be thou dismayed: for the LORD thy God
+                    is with thee whithersoever thou goest.
+                </div>
+                <cite class="verse-reference">Joshua 1:9</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">HOPE</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="hope faith"
+                data-reference="Romans 8:28">
+                <div class="card-top">
+                    <span class="category">Hope</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Romans 8:28 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    And we know that all things work together for
+                    good to them that love God, to them who are
+                    the called according to his purpose.
+                </div>
+                <cite class="verse-reference">Romans 8:28</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">PURPOSE</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="peace anxiety"
+                data-reference="Philippians 4:6-7">
+                <div class="card-top">
+                    <span class="category">Peace</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Philippians 4:6-7 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    Be careful for nothing; but in every thing by
+                    prayer and supplication with thanksgiving let
+                    your requests be made known unto God.
+                </div>
+                <cite class="verse-reference">Philippians 4:6-7</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">PRAYER</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="faith trust"
+                data-reference="2 Corinthians 5:7">
+                <div class="card-top">
+                    <span class="category">Faith</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add 2 Corinthians 5:7 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    For we walk by faith, not by sight.
+                </div>
+                <cite class="verse-reference">2 Corinthians 5:7</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">BELIEF</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="love kindness"
+                data-reference="1 Corinthians 13:8">
+                <div class="card-top">
+                    <span class="category">Love</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add 1 Corinthians 13:8 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    Charity never faileth.
+                </div>
+                <cite class="verse-reference">1 Corinthians 13:8</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">KINDNESS</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="peace trust"
+                data-reference="Psalm 46:10">
+                <div class="card-top">
+                    <span class="category">Stillness</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Psalm 46:10 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    Be still, and know that I am God.
+                </div>
+                <cite class="verse-reference">Psalm 46:10</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">WORSHIP</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="hope salvation"
+                data-reference="John 14:27">
+                <div class="card-top">
+                    <span class="category">Comfort</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add John 14:27 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    Peace I leave with you, my peace I give unto you:
+                    not as the world giveth, give I unto you.
+                </div>
+                <cite class="verse-reference">John 14:27</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">COMFORT</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+            <article class="verse-card"
+                data-category="gratitude joy"
+                data-reference="Psalm 118:24">
+                <div class="card-top">
+                    <span class="category">Gratitude</span>
+                    <button class="favorite" type="button"
+                        aria-label="Add Psalm 118:24 to favorites"
+                        aria-pressed="false">♡</button>
+                </div>
+                <div class="verse-text">
+                    This is the day which the LORD hath made;
+                    we will rejoice and be glad in it.
+                </div>
+                <cite class="verse-reference">Psalm 118:24</cite>
+                <div class="card-actions">
+                    <span style="color:#9aa3b1;font-size:11px">JOY</span>
+                    <button class="copy-button" type="button">▢ Copy verse</button>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="no-results" id="noResults">
+            No matching verses found. Try another word or Bible reference.
+        </div>
+    </section>
+
+    <!-- Encouragement -->
+    <section class="encouragement">
+        <h2>Carry His Word in Your Heart ✝</h2>
+        <p>
+            Whatever today brings, remember that you are never alone.
+            Make time for prayer, trust in God's promises, and share
+            His love with the people around you.
+        </p>
+    </section>
+
 </main>
 
-<footer class="thanks">
-  <h2>Thank You!</h2>
-  <p>God bless you. Have a wonderful day.</p>
-  <a class="logout" href="login.html" id="logout">Logout</a>
+<footer>
+    <div class="footer-brand">CHURCH <span>SPOT</span></div>
+    <p>Rooted in the Word. Growing in faith. Walking in love.</p>
+    <p>© <span id="year"></span> Church Spot · All rights reserved.</p>
+    <a href="#top" class="back-top">↑ Back to top</a>
 </footer>
 
 <script>
-  // Block direct access without logging in
-  if (sessionStorage.getItem("loggedIn") !== "true") {
-    window.location.href = "login.html";
-  }
-  document.getElementById("logout").addEventListener("click", function () {
-    sessionStorage.removeItem("loggedIn");
-  });
+(function () {
+    // Require the demo login session.
+    if (sessionStorage.getItem("loggedIn") !== "true") {
+        window.location.replace("login.html");
+        return;
+    }
+
+    // Display the logged-in user's name.
+    const savedUsername = sessionStorage.getItem("username");
+    const displayName = savedUsername
+        ? savedUsername.charAt(0).toUpperCase() + savedUsername.slice(1)
+        : "Friend";
+
+    document.getElementById("usernameDisplay").textContent = displayName;
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Verse of the day: changes by date, and stays the same throughout each day.
+    const dailyVerses = [
+        {
+            text: "This is the day which the LORD hath made; we will rejoice and be glad in it.",
+            reference: "Psalm 118:24"
+        },
+        {
+            text: "Be still, and know that I am God.",
+            reference: "Psalm 46:10"
+        },
+        {
+            text: "The LORD is my shepherd; I shall not want.",
+            reference: "Psalm 23:1"
+        },
+        {
+            text: "I can do all things through Christ which strengtheneth me.",
+            reference: "Philippians 4:13"
+        },
+        {
+            text: "Trust in the LORD with all thine heart; and lean not unto thine own understanding.",
+            reference: "Proverbs 3:5"
+        },
+        {
+            text: "For we walk by faith, not by sight.",
+            reference: "2 Corinthians 5:7"
+        },
+        {
+            text: "Peace I leave with you, my peace I give unto you.",
+            reference: "John 14:27"
+        },
+        {
+            text: "Be strong and of a good courage; be not afraid.",
+            reference: "Joshua 1:9"
+        },
+        {
+            text: "Charity never faileth.",
+            reference: "1 Corinthians 13:8"
+        },
+        {
+            text: "For God so loved the world, that he gave his only begotten Son.",
+            reference: "John 3:16"
+        },
+        {
+            text: "The LORD is good, a strong hold in the day of trouble.",
+            reference: "Nahum 1:7"
+        },
+        {
+            text: "Rejoice evermore.",
+            reference: "1 Thessalonians 5:16"
+        }
+    ];
+
+    // Use local calendar date so the featured verse rotates daily.
+    const now = new Date();
+    const localDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    );
+
+    const dateKey = [
+        localDate.getFullYear(),
+        String(localDate.getMonth() + 1).padStart(2, "0"),
+        String(localDate.getDate()).padStart(2, "0")
+    ].join("-");
+
+    const dayNumber = Math.floor(localDate.getTime() / 86400000);
+    const dailyIndex = ((dayNumber % dailyVerses.length) + dailyVerses.length)
+                       % dailyVerses.length;
+    const daily = dailyVerses[dailyIndex];
+
+    document.getElementById("dailyVerse").textContent = daily.text;
+    document.getElementById("dailyReference").textContent = daily.reference;
+    document.getElementById("dailyDate").textContent =
+        localDate.toLocaleDateString(undefined, {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+    // Copy text with a fallback for browsers without Clipboard API access.
+    async function copyText(text) {
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return true;
+            }
+
+            const area = document.createElement("textarea");
+            area.value = text;
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.select();
+
+            const copied = document.execCommand("copy");
+            area.remove();
+            return copied;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function showCopyResult(button, success) {
+        const original = button.dataset.originalLabel || button.textContent;
+        button.dataset.originalLabel = original;
+        button.textContent = success ? "✓ Copied!" : "Copy unavailable";
+        if (!success) {
+            button.title = "Please select and copy the verse manually.";
+        }
+
+        window.setTimeout(function () {
+            button.textContent = original;
+        }, 1800);
+    }
+
+    document.getElementById("copyDaily").addEventListener("click", async function () {
+        const text = daily.text + " — " + daily.reference;
+        showCopyResult(this, await copyText(text));
+    });
+
+    document.getElementById("shareDaily").addEventListener("click", async function () {
+        const text = daily.text + " — " + daily.reference;
+
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: "Church Spot — Verse of the Day",
+                    text: text
+                });
+            } catch (error) {
+                // Sharing was cancelled or unavailable.
+            }
+        } else {
+            const success = await copyText(text);
+            showCopyResult(this, success);
+            if (!success) {
+                window.prompt("Copy today's verse:", text);
+            }
+        }
+    });
+
+    // Search verse text, reference, and category.
+    const searchInput = document.getElementById("verseSearch");
+    const cards = Array.from(document.querySelectorAll(".verse-card"));
+    const noResults = document.getElementById("noResults");
+    const verseCount = document.getElementById("verseCount");
+
+    function filterVerses() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(function (card) {
+            const searchableText = [
+                card.innerText,
+                card.dataset.category,
+                card.dataset.reference
+            ].join(" ").toLowerCase();
+
+            const match = searchableText.includes(query);
+            card.hidden = !match;
+
+            if (match) visible++;
+        });
+
+        noResults.style.display = visible === 0 ? "block" : "none";
+        verseCount.textContent = visible + (visible === 1 ? " verse" : " verses");
+    }
+
+    searchInput.addEventListener("input", filterVerses);
+
+    // Favorites are kept in this browser for convenience.
+    const favoriteKey = "churchSpotFavoriteVerses";
+
+    function readFavorites() {
+        try {
+            return JSON.parse(localStorage.getItem(favoriteKey) || "[]");
+        } catch (error) {
+            return [];
+        }
+    }
+
+    let favorites = readFavorites();
+
+    function updateFavoriteButtons() {
+        document.querySelectorAll(".verse-card").forEach(function (card) {
+            const reference = card.dataset.reference;
+            const button = card.querySelector(".favorite");
+            const active = favorites.includes(reference);
+
+            button.classList.toggle("active", active);
+            button.textContent = active ? "♥" : "♡";
+            button.setAttribute("aria-pressed", String(active));
+            button.setAttribute(
+                "aria-label",
+                (active ? "Remove " : "Add ") + reference + " " +
+                (active ? "from" : "to") + " favorites"
+            );
+        });
+    }
+
+    document.querySelectorAll(".favorite").forEach(function (button) {
+        button.addEventListener("click", function () {
+            const card = button.closest(".verse-card");
+            const reference = card.dataset.reference;
+
+            if (favorites.includes(reference)) {
+                favorites = favorites.filter(function (item) {
+                    return item !== reference;
+                });
+            } else {
+                favorites.push(reference);
+            }
+
+            try {
+                localStorage.setItem(favoriteKey, JSON.stringify(favorites));
+            } catch (error) {
+                // Favorites still work for this page view if storage is unavailable.
+            }
+
+            updateFavoriteButtons();
+        });
+    });
+
+    updateFavoriteButtons();
+
+    // Copy an individual verse.
+    document.querySelectorAll(".copy-button").forEach(function (button) {
+        button.addEventListener("click", async function () {
+            const card = button.closest(".verse-card");
+            const text = card.querySelector(".verse-text").innerText.trim();
+            const reference = card.dataset.reference;
+            showCopyResult(button, await copyText(text + " — " + reference));
+        });
+    });
+
+    // Clear the demo login session when logging out.
+    document.getElementById("logout").addEventListener("click", function () {
+        sessionStorage.removeItem("loggedIn");
+        sessionStorage.removeItem("username");
+    });
+})();
 </script>
 
 </body>
