@@ -207,14 +207,14 @@
 
         <div class="irctc-header">
             <div class="irctc-logo">
-                CHURCH-SPOT<span> </span
+                CHURCH SPOT<span> </span
             </div>
-            <p> ONLINE SERVICES</p>
+            <p>CHURCH ONLINE SERVICES</p>
         </div>
 
         <div class="irctc-form-container">
 
-            <h2>Welcome Back!</h2>
+            <h2>Welcome to Church Spot!</h2>
             <p class="irctc-subtitle">
                 Sign in to your account
             </p>
