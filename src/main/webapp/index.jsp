@@ -1,318 +1,285 @@
-```html
-<style>
-    * {
-        box-sizing: border-box;
-    }
 
-    .irctc-login-wrapper {
-        min-height: 90vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 15px;
-        background: linear-gradient(135deg, #eef3f9, #ffffff);
-        font-family: Arial, Helvetica, sans-serif;
-    }
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Spot | Welcome</title>
 
-    .irctc-login-card {
-        width: 100%;
-        max-width: 440px;
-        background: #ffffff;
-        border-radius: 14px;
-        overflow: hidden;
-        box-shadow: 0 10px 35px rgba(0, 33, 71, 0.15);
-        border: 1px solid #e5eaf0;
-    }
-
-    .irctc-header {
-        background: #002147;
-        color: #ffffff;
-        text-align: center;
-        padding: 28px 20px;
-        border-bottom: 5px solid #fb792b;
-    }
-
-    .irctc-logo {
-        font-size: 30px;
-        font-weight: 800;
-        letter-spacing: 2px;
-        margin-bottom: 8px;
-    }
-
-    .irctc-logo span {
-        color: #fb792b;
-    }
-
-    .irctc-header p {
-        margin: 0;
-        font-size: 13px;
-        color: #dce7f5;
-    }
-
-    .irctc-form-container {
-        padding: 30px;
-    }
-
-    .irctc-form-container h2 {
-        color: #002147;
-        font-size: 23px;
-        text-align: center;
-        margin: 0 0 8px;
-    }
-
-    .irctc-subtitle {
-        text-align: center;
-        color: #6b7280;
-        font-size: 13px;
-        margin-bottom: 25px;
-    }
-
-    .irctc-form-group {
-        margin-bottom: 20px;
-    }
-
-    .irctc-form-group label {
-        display: block;
-        color: #26364a;
-        font-size: 13px;
-        font-weight: bold;
-        margin-bottom: 8px;
-    }
-
-    .irctc-form-group input {
-        display: block;
-        width: 100%;
-        padding: 13px 14px;
-        border: 1px solid #cbd5e1;
-        border-radius: 7px;
-        font-size: 14px;
-        outline: none;
-        background: #ffffff;
-        transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .irctc-form-group input:focus {
-        border-color: #fb792b;
-        box-shadow: 0 0 0 3px rgba(251, 121, 43, 0.15);
-    }
-
-    .irctc-captcha-box {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 12px;
-    }
-
-    .irctc-captcha-code {
-        flex: 1;
-        text-align: center;
-        padding: 13px 8px;
-        border: 1px dashed #64748b;
-        border-radius: 7px;
-        background: repeating-linear-gradient(
-            -20deg,
-            #f0f4fa,
-            #f0f4fa 5px,
-            #e2e8f0 5px,
-            #e2e8f0 10px
-        );
-        color: #002147;
-        font-size: 21px;
-        font-weight: bold;
-        font-style: italic;
-        letter-spacing: 6px;
-        user-select: none;
-    }
-
-    .irctc-captcha-note {
-        font-size: 11px;
-        color: #64748b;
-        margin-top: 7px;
-    }
-
-    .irctc-login-button {
-        display: block;
-        width: 100%;
-        border: none;
-        border-radius: 7px;
-        background: #fb792b;
-        color: #ffffff;
-        padding: 14px;
-        font-size: 15px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: background 0.2s, transform 0.2s;
-        margin-top: 25px;
-    }
-
-    .irctc-login-button:hover {
-        background: #e96518;
-        transform: translateY(-1px);
-    }
-
-    .irctc-links {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 23px;
-        font-size: 12px;
-    }
-
-    .irctc-links a {
-        color: #004b8d;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .irctc-links a:hover {
-        color: #fb792b;
-        text-decoration: underline;
-    }
-
-    .irctc-divider {
-        border: 0;
-        border-top: 1px solid #e5e7eb;
-        margin: 22px 0 15px;
-    }
-
-    .irctc-footer {
-        text-align: center;
-        color: #64748b;
-        font-size: 11px;
-        line-height: 1.6;
-    }
-
-    @media (max-width: 480px) {
-        .irctc-form-container {
-            padding: 24px 20px;
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .irctc-logo {
-            font-size: 26px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: #081426;
+            color: white;
         }
 
-        .irctc-links {
+        .welcome-page {
+            min-height: 100vh;
+            display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 14px;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(5, 15, 35, 0.92) 0%,
+                    rgba(5, 15, 35, 0.78) 48%,
+                    rgba(5, 15, 35, 0.40) 100%
+                ),
+                url("images/church-background.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-    }
-</style>
 
-<div class="irctc-login-wrapper">
-    <div class="irctc-login-card">
+        /* Navigation bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
 
-        <div class="irctc-header">
-            <div class="irctc-logo">
-                CHURCH SPOT<span> </span
-            </div>
-            <p>CHURCH ONLINE SERVICES</p>
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .logo span {
+            color: #f5c76b;
+        }
+
+        .nav-tagline {
+            font-size: 13px;
+            color: #e0e7f2;
+            letter-spacing: 1px;
+        }
+
+        /* Main welcome content */
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .welcome-label {
+            display: inline-block;
+            color: #f5c76b;
+            border: 1px solid rgba(245, 199, 107, 0.6);
+            border-radius: 30px;
+            padding: 9px 18px;
+            margin-bottom: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.12;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: #f5c76b;
+        }
+
+        .hero-description {
+            max-width: 590px;
+            color: #e0e7f2;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 22px;
+        }
+
+        .bible-verse {
+            color: #f8dfaa;
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        /* Stylish enter button */
+        .enter-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 17px 32px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #f7d58a, #e8ad43);
+            color: #10213a;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(232, 173, 67, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(232, 173, 67, 0.4);
+            background: linear-gradient(135deg, #ffe7ad, #f1bd5b);
+        }
+
+        .enter-button:focus-visible {
+            outline: 3px solid white;
+            outline-offset: 5px;
+        }
+
+        .button-arrow {
+            font-size: 21px;
+            transition: transform 0.3s ease;
+        }
+
+        .enter-button:hover .button-arrow {
+            transform: translateX(5px);
+        }
+
+        .hero-note {
+            margin-top: 22px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(3, 10, 24, 0.55);
+            color: #cbd5e1;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .footer span {
+            color: #f5c76b;
+        }
+
+        /* Mobile responsive design */
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 22px 6%;
+                flex-direction: column;
+                gap: 9px;
+                align-items: flex-start;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-tagline {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 65px 6%;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .enter-button {
+                width: 100%;
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="welcome-page">
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="logo">
+            CHURCH <span>SPOT</span>
         </div>
 
-        <div class="irctc-form-container">
+        <div class="nav-tagline">
+            YOUR FAITH. YOUR COMMUNITY. YOUR PLACE.
+        </div>
+    </header>
 
-            <h2>Welcome to Church Spot!</h2>
-            <p class="irctc-subtitle">
-                Sign in to your account
+    <!-- Welcome section -->
+    <main class="hero">
+        <div class="hero-content">
+
+            <div class="welcome-label">
+                ✦ WELCOME TO CHURCH SPOT ✦
+            </div>
+
+            <h1>
+                A Place to<br>
+                Grow in <span>Faith.</span>
+            </h1>
+
+            <p class="hero-description">
+                Welcome to Church Spot — a place to connect with
+                your church community, strengthen your faith, and
+                grow together in the love of Jesus Christ.
             </p>
 
+            <p class="bible-verse">
+                "For where two or three gather in my name,
+                there am I with them."<br>
+                — Matthew 18:20
+            </p>
+
+            <!-- Keep the required login form action -->
             <form method="POST" action="login.html">
-
-                <div class="irctc-form-group">
-                    <label for="username">User ID</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Enter your User ID"
-                        minlength="4"
-                        autocomplete="username"
-                        required>
-                </div>
-
-		<div class="irctc-form-group">
-                    <label for="AGE">AGE</label>
-                    <input
-                        type="age"
-                        id="age"
-                        name="age"
-                        placeholder="Enter your AGE"
-                        minlength="2"
-                        autocomplete="age"
-                        required>
-                </div>
-		
-		<div class="irctc-form-group">
-                    <label for="DOB">DOB</label>
-                    <input
-                        type="DOB"
-                        id="DOB"
-			name="DOB"
-                        placeholder="Enter your Date of Birth"
-                        minlength="8"
-                        autocomplete="D.O.B"
-                        required>
-                </div>
-
-                <div class="irctc-form-group">
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        minlength="4"
-                        autocomplete="current-password"
-                        required>
-                </div>
-
-                <div class="irctc-form-group">
-                    <label for="captcha">Security Verification</label>
-
-                    <div class="irctc-captcha-box">
-                        <div
-                            class="irctc-captcha-code"
-                            aria-label="Demo CAPTCHA code: A7K9P">
-                            A7K9P
-                        </div>
-                    </div>
-
-                    <input
-                        type="text"
-                        id="captcha"
-                        name="captcha"
-                        placeholder="Enter the CAPTCHA shown above"
-                        autocomplete="off"
-                        required>
-
-                    <p class="irctc-captcha-note">
-                        Demo CAPTCHA for UI testing only.
-                    </p>
-                </div>
-
-                <button type="submit" class="irctc-login-button">
-                    SIGN IN
+                <button type="submit" class="enter-button">
+                    ENTER CHURCH SPOT
+                    <span class="button-arrow" aria-hidden="true">
+                        →
+                    </span>
                 </button>
-
             </form>
 
-            <div class="irctc-links">
-                <a href="ForgotPassword.jsp">Forgot Password?</a>
-                <a href="ForgotUserID.jsp">Forgot User ID?</a>
-                <a href="Register.jsp">Register User</a>
-            </div>
-
-            <hr class="irctc-divider">
-
-            <div class="irctc-footer">
-                Thanks for visiting the Churchspot page.<br>
-                This is not the official Churchspot login page.
-            </div>
+            <p class="hero-note">
+                Join us in faith, fellowship, and worship.
+            </p>
 
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            Made with <span>♥</span> for the glory of God
+        </p>
+        <p>
+            © 2026 Church Spot. All rights reserved.
+        </p>
+    </footer>
+
 </div>
-```
+
+</body>
+</html>
+
